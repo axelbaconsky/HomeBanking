@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace HomeBankingMindHub.Models
 {
@@ -31,6 +32,23 @@ namespace HomeBankingMindHub.Models
                 }
 
                 //guardamos
+                context.SaveChanges();
+            }
+
+            if (!context.Accounts.Any())
+            {
+                var clientRafael = context.Clients.FirstOrDefault(c => c.Email == "rafael@gmail.com");
+                if (clientRafael != null)
+                {
+                    var accounts = new Account[]
+                    {
+                        new Account {ClientId = clientRafael.Id, CreationDate = DateTime.Now, Number = string.Empty, Balance = 1000}
+                    };
+                    foreach (Account account in accounts)
+                    {
+                        context.Accounts.Add(account);
+                    }
+                }
                 context.SaveChanges();
             }
 
