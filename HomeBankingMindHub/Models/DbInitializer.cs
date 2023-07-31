@@ -42,7 +42,7 @@ namespace HomeBankingMindHub.Models
                 {
                     var accounts = new Account[]
                     {
-                        new Account {ClientId = clientRafael.Id, CreationDate = DateTime.Now, Number = String.Empty, Balance = 2000}
+                        new Account {ClientId = clientRafael.Id, CreationDate = DateTime.Now, Number = String.Empty, Balance = 5000}
                     };
                     foreach (Account account in accounts)
                     {
