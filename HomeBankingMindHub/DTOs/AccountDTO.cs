@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace HomeBankingMindHub.Models
+namespace HomeBankingMindHub.DTOs
 {
     public class AccountDTO
     {
@@ -11,5 +12,6 @@ namespace HomeBankingMindHub.Models
         public DateTime CreationDate { get; set; }
 
         public double Balance { get; set; }
+        public ICollection<TransactionDTO> Transactions { get; set; }
     }
 }

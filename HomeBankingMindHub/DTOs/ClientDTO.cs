@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HomeBankingMindHub.Models
+namespace HomeBankingMindHub.DTOs
 {
     public class ClientDTO
     {
