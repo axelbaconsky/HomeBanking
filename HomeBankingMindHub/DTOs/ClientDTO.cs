@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HomeBankingMindHub.dtos;
+using System.Collections.Generic;
 
 namespace HomeBankingMindHub.DTOs
 {
@@ -15,5 +16,6 @@ namespace HomeBankingMindHub.DTOs
 
         public ICollection<AccountDTO> Accounts { get; set; }
         public long Id { get; internal set; }
+        public ICollection<ClientLoanDTO> Loans { get; set; }
     }
 }
