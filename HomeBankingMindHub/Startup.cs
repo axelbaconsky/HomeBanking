@@ -73,15 +73,15 @@ namespace HomeBankingMindHub
             app.UseAuthorization();
             //autorización
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=games}/{ action = Get}");
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapRazorPages();
+            //    endpoints.MapControllerRoute(
+            //    name: "default",
+            //    pattern: "{controller=games}/{ action = Get}");
+            //});
 
             app.UseEndpoints(endpoints =>
             {
