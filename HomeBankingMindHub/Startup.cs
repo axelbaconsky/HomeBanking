@@ -1,3 +1,4 @@
+using HomeBanking.Repositories;
 using HomeBankingMindHub.Models;
 using HomeBankingMindHub.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -38,6 +39,7 @@ namespace HomeBankingMindHub
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ICardRepository, CardRepository>();
             //autenticación
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>

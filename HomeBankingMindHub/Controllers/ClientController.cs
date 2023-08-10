@@ -18,11 +18,13 @@ namespace HomeBankingMindHub.Controllers
 
     {
         private IClientRepository _clientRepository;
+        private IAccountRepository _accountRepository;
 
-        public ClientsController(IClientRepository clientRepository)
+        public ClientsController(IClientRepository clientRepository, IAccountRepository accountRepository)
 
         {
             _clientRepository = clientRepository;
+            _accountRepository = accountRepository;
         }
 
         [HttpGet]
@@ -210,8 +212,35 @@ namespace HomeBankingMindHub.Controllers
                 };
 
                 _clientRepository.Save(newClient);
-                return Created("", newClient);
 
+                Random random = new Random();
+                int randomNum = random.Next(0, 100000000);
+                string accountNumber = $"VIN-{randomNum:D8}";
+
+                Account newAccount = new Account
+                {
+                    Number = accountNumber,
+                    CreationDate = DateTime.Now,
+                    Balance = 0,
+                    ClientId = newClient.Id,
+                };
+                _accountRepository.Save(newAccount);
+
+                ClientDTO newDTO = new ClientDTO
+                {
+                    Id = newClient.Id,
+                    Email = client.Email,
+                    FirstName = client.FirstName,
+                    LastName = client.LastName,
+                    Accounts = newClient.Accounts.Select(acc => new AccountDTO
+                    {
+                        Id = acc.Id,
+                        Number = acc.Number,
+                        CreationDate = acc.CreationDate,
+                        Balance = acc.Balance,
+                    }).ToList(),
+                };
+                return Created("", newDTO);
             }
             catch (Exception ex)
             {
