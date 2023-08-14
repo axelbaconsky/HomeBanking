@@ -40,6 +40,7 @@ namespace HomeBankingMindHub
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
             //autenticación
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
@@ -47,6 +48,7 @@ namespace HomeBankingMindHub
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 options.LoginPath = new PathString("/index.html");
             });
+            
 
             //autorización
             services.AddAuthorization(options =>
